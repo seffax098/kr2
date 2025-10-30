@@ -1,45 +1,229 @@
-html,
-body {
-    height: 100%;
+.download-button,
+.skip-link {
+    text-decoration: none;
+    color: #fff
+}
+
+:root {
+    color-scheme: light dark;
+    --step: clamp(.95rem, .9rem + .4vw, 1.05rem)
+}
+
+.btn,
+.form-control,
+.form-label {
+    font-size: var(--step)
+}
+
+body,
+html {
+    height: 100%
 }
 
 body {
+    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    background: #f8fafc;
+    color: #0b1020;
     display: flex;
     flex-direction: column;
-    margin: 0;
+    margin: 0
 }
 
 main {
-    flex: 1 0 auto;
+    flex: 1 0 auto
 }
 
 footer {
-    margin-top: auto;
+    margin-top: auto
 }
 
 .download-button {
     display: flex;
-    /* Чтобы кнопка вела себя как блок */
     background-color: #0d6efd;
-    /* Цвет фона */
-    color: white;
-    /* Цвет текста */
     padding: 10px 20px;
-    /* Отступы */
     text-align: center;
-    /* Выравнивание текста */
-    text-decoration: none;
-    /* Убираем подчеркивание ссылки */
     border-radius: 5px;
-    /* Скругление углов */
     height: 40px;
     align-items: center;
     justify-content: center;
-    width: 20%;
+    width: 20%
 }
 
 .download-button:hover {
     background-color: #0849ab;
-    /* Цвет фона при наведении */
-    color: white;
+    color: #fff
+}
+
+.skip-link {
+    position: absolute;
+    inset-inline-start: 1rem;
+    inset-block-start: -100%;
+    z-index: 10000;
+    padding: .5rem .75rem;
+    background: #111;
+    border-radius: .5rem
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+    inset-block-start: 1rem
+}
+
+:focus-visible {
+    outline: #2563eb solid 3px;
+    outline-offset: 2px
+}
+
+a,
+button,
+input,
+textarea {
+    outline-offset: 2px
+}
+
+.nav-sticky {
+    position: sticky;
+    top: 0;
+    padding-block-start: calc(.75rem + env(safe-area-inset-top));
+    padding-block-end: .75rem;
+    padding-inline: calc(1rem + env(safe-area-inset-left)) calc(1rem + env(safe-area-inset-right));
+    isolation: isolate;
+    z-index: 100
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    gap: 1rem
+}
+
+.project-card {
+    min-width: 0
+}
+
+.project-card * {
+    overflow-wrap: anywhere
+}
+
+@media (prefers-reduced-motion:reduce) {
+    * {
+        animation: none !important;
+        transition: none !important
+    }
+}
+
+.hero-photo {
+    inline-size: 200px;
+    block-size: 200px;
+    object-fit: cover;
+    background: #e5e7eb
+}
+
+@media (max-width:640px) {
+    .hero-photo {
+        inline-size: 160px;
+        block-size: 160px
+    }
+}
+
+@media (pointer:coarse) {
+
+    .btn,
+    .nav-link,
+    a,
+    button {
+        min-height: 44px;
+        padding-block: .75rem
+    }
+
+    .download-button {
+        min-height: 44px
+    }
+}
+
+@supports (container-type:inline-size) {
+    .projects-area {
+        container-type: inline-size;
+        container-name: projects
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr
+    }
+
+    @container projects (min-width:640px) {
+        .projects-grid {
+            grid-template-columns: repeat(2, 1fr)
+        }
+    }
+
+    @container projects (min-width:960px) {
+        .projects-grid {
+            grid-template-columns: repeat(3, 1fr)
+        }
+    }
+}
+
+#contactModal {
+    background-color: #fff
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem
+}
+
+.gallery__image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px
+}
+
+@media (max-width:768px) {
+    .gallery {
+        grid-template-columns: repeat(2, 1fr)
+    }
+
+    .gallery__image {
+        height: 150px
+    }
+}
+
+@media (max-width:480px) {
+    .gallery {
+        grid-template-columns: 1fr
+    }
+
+    .gallery__image {
+        height: 150px
+    }
+}
+
+@media print {
+
+    .card,
+    .section {
+        box-shadow: none;
+        border: 1px solid #ccc
+    }
+
+    .gallery {
+        grid-template-columns: repeat(2, 1fr)
+    }
+}
+
+@media (prefers-contrast:more) {
+
+    .btn,
+    .form-control {
+        box-shadow: inset 0 0 0 2px #fff
+    }
+
+    button,
+    input,
+    textarea {
+        border: 2px solid #000
+    }
 }

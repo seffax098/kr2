@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -11,6 +11,7 @@
 </head>
 
 <body class="bg-light">
+    <a class="skip-link" href="#main">Перейти к основному содержимому</a>
     <div class="container-fluid p-0 d-flex flex-column min-vh-100">
         <!-- Header -->
         <header class="bg-primary text-white py-4">
@@ -21,13 +22,13 @@
                         <p class="mb-0 opacity-75">Студент разработчик</p>
                     </div>
                     <div class="col-auto">
-                        <span class="badge bg-light text-primary">ЭФБО-04-24</span>
+                        <p class="fw-bolder">ЭФБО-04-24</p>
                     </div>
                 </div>
             </div>
         </header>
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-light bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav-sticky" aria-label="Основная навигация">
             <div class="container-fluid container">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
@@ -37,7 +38,7 @@
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
                         <a class="nav-link" href="../index.html">Главная</a>
-                        <a class="nav-link active" href="#">Проекты</a>
+                        <a class="nav-link active" aria-current="page" href="#">Проекты</a>
                         <a class="nav-link" href="diary.html">Дневник</a>
                         <a class="nav-link" href="contacts.html">Контакты</a>
                     </div>
@@ -45,68 +46,98 @@
             </div>
         </nav>
 
-        <main class="container my-4">
+        <main class="container my-4" id="main">
             <section class="mb-5">
                 <div class="card shadow-sm">
                     <div class="card-header bg-card">
                         <!-- Фильтры -->
                         <div class="btn-group mb-4" id="filters">
-                            <button class="btn btn-primary active" data-filter="all">Все</button>
-                            <button class="btn btn-outline-primary" data-filter="cs">CS 2</button>
-                            <button class="btn btn-outline-primary" data-filter="minecraft">Minecraft</button>
-                            <button class="btn btn-outline-primary" data-filter="htmlcss">HTML/CSS</button>
+                            <button class="btn btn-dark active" data-filter="all">Все</button>
+                            <button class="btn btn-outline-dark" data-filter="cs">CS 2</button>
+                            <button class="btn btn-outline-dark" data-filter="minecraft">Minecraft</button>
+                            <button class="btn btn-outline-dark" data-filter="htmlcss">HTML/CSS</button>
                         </div>
 
                     </div>
                     <div class="card-body">
-                        <div class="row g-3" id="projects">
-                            <!-- HTML/CSS сайт -->
-                            <div class="col-md-4 project" data-tech="htmlcss website" data-title="Сайт"
-                                data-desc="Одностраничный личный сайт с адаптивной сеткой, формой контактов и плавной анимацией."
-                                data-images="../images/project1.jpg">
-                                <div class="card h-100">
-                                    <img src="../images/project1.jpg" class="card-img-top" alt="Личный сайт"
-                                        style="height:150px;object-fit:cover;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Сайт</h5>
-                                        <p class="card-text small text-muted">Свой сайт.</p>
-                                        <div class="mb-2">
-                                            <span class="badge bg-primary">HTML</span>
-                                            <span class="badge bg-primary">CSS</span>
+                        <section class="projects-area">
+                            <div class="projects-grid" id="projects">
+                                <article class="project-card project" data-tech="htmlcss website" data-title="Сайт"
+                                    data-desc="Одностраничный личный сайт" data-images="../images/project1.jpg">
+                                    <div class="card h-100">
+                                        <picture>
+                                            <source type="image/avif"
+                                                srcset="../images/project1-300.avif 300w, ../images/project1-600.avif 600w"
+                                                sizes="(min-width: 900px) 300px, 45vw">
+                                            <source type="image/webp"
+                                                srcset="../images/project1-300.webp 300w, ../images/project1-600.webp 600w"
+                                                sizes="(min-width: 900px) 300px, 45vw">
+                                            <img class="card-img-top" src="../images/project1.jpg"
+                                                srcset="../images/project1-300.jpg 300w, ../images/project1-600.jpg 600w"
+                                                sizes="(min-width: 900px) 300px, 45vw" width="600" height="338"
+                                                alt="Личный сайт" loading="lazy" decoding="async"
+                                                style="width:100%; height:250px; object-fit: cover;">
+                                        </picture>
+                                        <div class="card-body">
+                                            <h2 class="card-title">Сайт</h2>
+                                            <p class="card-text small text-muted">Свой сайт.</p>
+                                            <div class="mb-2">
+                                                <span class="badge bg-primary">HTML</span>
+                                                <span class="badge bg-primary">CSS</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
+                                </article>
 
-                            <!-- CS 2 -->
-                            <div class="col-md-4 project" data-tech="cs" data-title="10 lvl Faceit"
-                                data-desc="Достижения в матчмейкинге и турнирах." data-images="../images/faceit.png">
-                                <div class="card h-100">
-                                    <img src="../images/faceit.png" class="card-img-top" alt="faceit"
-                                        style="height:150px;object-fit:cover;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">10 lvl faceit</h5>
-                                        <p class="card-text small text-muted">Почти лучший игрок CS 2.</p>
-                                        <div class="mb-2"><span class="badge bg-success">CS 2</span></div>
+                                <article class="project-card project" data-tech="cs" data-title="10 lvl Faceit"
+                                    data-desc="Достижения в матчмейкинге..." data-images="../images/faceit.png">
+                                    <div class="card h-100">
+                                        <picture>
+                                            <source type="image/avif"
+                                                srcset="../images/faceit-300.avif 300w, ../images/faceit-600.avif 600w"
+                                                sizes="(min-width: 900px) 300px, 45vw">
+                                            <source type="image/webp"
+                                                srcset="../images/faceit-300.webp 300w, ../images/faceit-600.webp 600w"
+                                                sizes="(min-width: 900px) 300px, 45vw">
+                                            <img class="card-img-top" src="../images/faceit.jpg"
+                                                srcset="../images/faceit-300.jpg 300w, ../images/faceit-600.jpg 600w"
+                                                sizes="(min-width: 900px) 300px, 45vw" width="600" height="338"
+                                                alt="Личный сайт" loading="lazy" decoding="async"
+                                                style="width:100%; height:250px; object-fit: cover;">
+                                        </picture>
+                                        <div class="card-body">
+                                            <h2 class="card-title">10 lvl faceit</h2>
+                                            <p class="card-text small text-muted">Почти лучший игрок CS 2.</p>
+                                            <div class="mb-2"><span class="badge bg-success">CS 2</span></div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <!-- Minecraft -->
-                            <div class="col-md-4 project" data-tech="minecraft" data-title="Minecraft"
-                                data-desc="Прохождение, редстоун-механизмы и база. Скриншоты из мира."
-                                data-images="../images/minecraft.jpg">
-                                <div class="card h-100">
-                                    <img src="../images/minecraft.jpg" class="card-img-top" alt="minecraft"
-                                        style="height:150px;object-fit:cover;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Minecraft</h5>
-                                        <p class="card-text small text-muted">Прошел Minecraft</p>
-                                        <div class="mb-2"><span class="badge bg-info">Minecraft</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                </article>
 
+                                <article class="project-card project" data-tech="minecraft" data-title="Minecraft"
+                                    data-desc="Прохождение, редстоун..." data-images="../images/minecraft.jpg">
+                                    <div class="card h-100">
+                                        <picture>
+                                            <source type="image/avif"
+                                                srcset="../images/minecraft-300.avif 300w, ../images/minecraft-600.avif 600w"
+                                                sizes="(min-width: 900px) 300px, 45vw">
+                                            <source type="image/webp"
+                                                srcset="../images/minecraft-300.webp 300w, ../images/minecraft-600.webp 600w"
+                                                sizes="(min-width: 900px) 300px, 45vw">
+                                            <img class="card-img-top" src="../images/minecraft.jpg"
+                                                srcset="../images/minecraft-300.jpg 300w, ../images/minecraft-600.jpg 600w"
+                                                sizes="(min-width: 900px) 300px, 45vw" width="600" height="338"
+                                                alt="Личный сайт" loading="lazy" decoding="async"
+                                                style="width:100%; height:250px; object-fit: cover;">
+                                        </picture>
+                                        <div class="card-body">
+                                            <h2 class="card-title">Minecraft</h2>
+                                            <p class="card-text small text-muted">Прошел Minecraft</p>
+                                            <div class="mb-2"><span class="badge bg-primary">Minecraft</span></div>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                        </section>
                     </div>
                 </div>
             </section>
@@ -161,17 +192,16 @@
         })();
     </script>
 
-    </div>
 
     <div class="modal fade" id="projectModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="pmTitle">Заголовок проекта</h5>
+                    <h2 class="modal-title" id="pmTitle">Заголовок проекта</h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                 </div>
                 <div class="modal-body">
-                    <img id="pmImage" src="" alt="screenshot" class="img-fluid mb-3 rounded"
+                    <img id="pmImage" src="" alt="screenshot" class="img-fluid mb-3 rounded" width="1280" height="720"
                         style="max-height:420px; object-fit:cover;">
                     <p id="pmDesc" class="mb-0"></p>
                 </div>
